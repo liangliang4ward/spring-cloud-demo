@@ -1,4 +1,4 @@
-package demo.aspectlog;
+package com.demo.aspectlog;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import java.util.Map;
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class ParamLogAspect {
 
-    @Pointcut("@within(demo.aspectlog.ParamLog)")
+    @Pointcut("@within(com.demo.aspectlog.ParamLog)")
     public void aspectLog(){
 
     }

@@ -9,7 +9,7 @@
     "name": "test",
     "address": "hhh"
   },
-  "className": "com.example.demo.aspectlog.test.ParamLogController",
+  "className": "com.example.ParamLogController",
   "params": {
     "person": {
       "id": "123",

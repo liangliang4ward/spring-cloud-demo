@@ -1,7 +1,7 @@
-package demo.aspectlog.test;
+package com.demo.aspectlog.test;
 
-import demo.aspectlog.ParamLog;
-import demo.model.Person;
+import com.demo.aspectlog.ParamLog;
+import com.demo.model.Person;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
