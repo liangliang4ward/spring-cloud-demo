@@ -26,7 +26,7 @@ import java.util.Map;
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class ParamLogAspect {
 
-    @Pointcut("@within(com.demo.aspectlog.ParamLog)")
+    @Pointcut("@within(com.demo.aspectlog.ParamLog) || @annotation(com.demo.aspectlog.ParamLog)")
     public void aspectLog(){
 
     }
