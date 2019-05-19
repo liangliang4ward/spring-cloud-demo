@@ -11,6 +11,7 @@
     <modules>
         <module>param-log</module>
         <module>transaction-msg-sender</module>
+        <module>feign-demo</module>
     </modules>
     <properties>
         <mysql.version>5.1.39</mysql.version>
