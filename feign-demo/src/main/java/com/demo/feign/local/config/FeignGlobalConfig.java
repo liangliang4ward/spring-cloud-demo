@@ -1,5 +1,6 @@
 package com.demo.feign.local.config;
 
+import feign.Request;
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +23,17 @@ public class FeignGlobalConfig {
 
     @Bean
     public RequestInterceptor otherInterceptor(){
-        return requestTemplate->{
-            System.out.println("other-token");
-        };
+        return requestTemplate->System.out.println("other-token");
+
+    }
+
+    /**
+     * 配置超时时间
+     * @return
+     */
+    @Bean
+    public Request.Options options(){
+        return new Request.Options(10000,10000);
     }
 
 

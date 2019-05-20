@@ -2,9 +2,8 @@ package com.demo.feign.remote;
 
 import com.demo.feign.model.ResultResponse;
 import com.demo.feign.model.Student;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.demo.feign.model.StudentRequest;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,10 @@ public class ServerController {
 
 
 
-    @RequestMapping("/listStudents")
-    public ResultResponse<List<Student>> listStudents(@RequestHeader("token")String token){
+    @RequestMapping(value = "/listStudents",method = RequestMethod.GET)
+    public ResultResponse<List<Student>> listStudents(StudentRequest request,@RequestHeader("token")String token){
+
+        System.out.println("request->"+request);
         System.out.println("token:"+token);
         ResultResponse<List<Student>> response = new ResultResponse<>();
 
