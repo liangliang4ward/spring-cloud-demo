@@ -2,6 +2,7 @@ package com.demo.feign.remote;
 
 import com.demo.feign.model.ResultResponse;
 import com.demo.feign.model.Student;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,8 @@ public class ServerController {
 
 
     @RequestMapping("/listStudents")
-    public ResultResponse<List<Student>> listStudents(){
+    public ResultResponse<List<Student>> listStudents(@RequestHeader("token")String token){
+        System.out.println("token:"+token);
         ResultResponse<List<Student>> response = new ResultResponse<>();
 
         List<Student> datas = new ArrayList<>();
