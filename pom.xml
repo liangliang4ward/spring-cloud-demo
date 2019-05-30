@@ -13,6 +13,7 @@
         <module>transaction-msg-sender</module>
         <module>feign-demo</module>
         <module>netty-demo</module>
+        <module>lift-agent</module>
     </modules>
     <properties>
         <mysql.version>5.1.39</mysql.version>
