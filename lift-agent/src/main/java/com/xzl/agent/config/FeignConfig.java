@@ -1,5 +1,6 @@
 package com.xzl.agent.config;
 
+import com.xzl.agent.service.TokenService;
 import feign.Request;
 import feign.RequestInterceptor;
 import feign.codec.Encoder;
@@ -22,13 +23,12 @@ import org.springframework.context.annotation.Primary;
 public class FeignConfig {
 
 
+
     @Bean
     public RequestInterceptor getRequestInterceptor() {
         return requestTemplate -> {
             /** 设置请求头信息 **/
-
             requestTemplate.header("x-gsdata-date", new DateTime(System.currentTimeMillis(), DateTimeZone.UTC).toString());
-//            requestTemplate.header("Authorization", BaseTypeConstants.SERVICE_TOKEN_PREFIX + innerToken.getInnerToken());
         };
     }
 

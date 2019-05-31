@@ -3,6 +3,7 @@ package com.xzl.agent.schedule;
 import com.xzl.agent.api.TokenRemoteApi;
 import com.xzl.agent.api.response.TokenResponse;
 import com.xzl.agent.service.RegServerService;
+import com.xzl.agent.service.TokenService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,9 @@ public class TokenSchedule {
     @Autowired
     private RegServerService regServerService;
 
+    @Autowired
+    private TokenService tokenService;
+
     @Value("client.id")
     private String clientId;
 
@@ -28,12 +32,19 @@ public class TokenSchedule {
 
     @PostConstruct
     public void init() {
-        String authorization = getBasicAuth();
-        Map<String, ?> map = new HashMap<>();
-        TokenResponse tokenResponse = tokenRemoteApi.authToken(authorization, map);
+        try {
+            String authorization = getBasicAuth();
+            Map<String, ?> map = new HashMap<>();
+            TokenResponse tokenResponse = tokenRemoteApi.authToken(authorization, map);
 
-        //服务注册
-        regServerService.regServer();;
+            tokenService.resetToken(tokenResponse.getAccessToken());
+
+            //服务注册
+            regServerService.regServer();
+        } catch (Exception e) {
+
+        }
+
     }
 
 
@@ -47,6 +58,7 @@ public class TokenSchedule {
         String authorization = getBasicAuth();
         Map<String, ?> map = new HashMap<>();
         TokenResponse tokenResponse = tokenRemoteApi.authToken(authorization, map);
+        tokenService.resetToken(tokenResponse.getAccessToken());
 
     }
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author gll
  * 2019/5/30 20:03
  */
-@FeignClient
+@FeignClient(url = "http://localhost:12",name = "ping")
 public interface PingRemoteApi {
 
 
