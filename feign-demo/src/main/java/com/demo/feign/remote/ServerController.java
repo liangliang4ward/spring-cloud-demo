@@ -34,4 +34,9 @@ public class ServerController {
         return  response;
     }
 
+    @RequestMapping(value="/test2",method = RequestMethod.POST)
+    public void test(String name,String age){
+        System.out.println(name+","+age);
+    }
+
 }
