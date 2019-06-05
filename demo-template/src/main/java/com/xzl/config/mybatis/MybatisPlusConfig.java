@@ -22,7 +22,7 @@ public class MybatisPlusConfig {
      * see https://mp.baomidou.com/guide/performance-analysis-plugin.html
      */
     @Bean
-    @Profile({"dev","test"})
+//    @Profile({"dev","test"})
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
     }
