@@ -43,6 +43,9 @@ public class MysqlGenerator {
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 
+    private static String DATABASE_ULR="jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false";
+    private static String USERNAME="root";
+    private static String PASSWORD="123456";
     /**
      * RUN THIS
      */
@@ -60,11 +63,11 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl(DATABASE_ULR);
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setUsername(USERNAME);
+        dsc.setPassword(PASSWORD);
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -103,6 +106,8 @@ public class MysqlGenerator {
         strategy.setInclude(scanner("表名"));
         strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
+        strategy.setRestControllerStyle(true);
+        strategy.setEntityBooleanColumnRemoveIsPrefix(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         // 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
