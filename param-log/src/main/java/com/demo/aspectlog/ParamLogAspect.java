@@ -13,6 +13,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,10 +83,17 @@ public class ParamLogAspect {
         String[] paramNames = ((CodeSignature) joinPoint.getSignature()).getParameterNames();
         Map<String, Object> resultMap = new HashMap<>();
         for (int i = 0; i < paramNames.length; i++) {
-            resultMap.put(paramNames[i], paramValues[i]);
+            if(!isSkipValue(paramValues[i])){
+                resultMap.put(paramNames[i], paramValues[i]);
+            }
         }
         return resultMap;
 
+    }
+
+    private boolean isSkipValue(Object paramValue) {
+        return paramValue instanceof HttpServletRequest ||
+                paramValue instanceof HttpServletResponse;
     }
 
 
