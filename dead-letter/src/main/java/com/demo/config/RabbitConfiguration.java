@@ -2,7 +2,9 @@ package com.demo.config;
 
 import com.demo.DtsConstants;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.transaction.RabbitTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +45,15 @@ public class RabbitConfiguration {
     @Bean(name="orderBinding")
     public Binding orderBinding(@Qualifier("orderQueue") Queue orderQueue,@Qualifier("orderExchange") Exchange orderExchange){
         return BindingBuilder.bind(orderQueue).to(orderExchange).with("order-add").noargs();
+    }
+
+
+
+    @Bean("rabbitTransactionManager")
+    public RabbitTransactionManager rabbitTransactionManager(CachingConnectionFactory connectionFactory) {
+
+        return new RabbitTransactionManager(connectionFactory);
+
     }
 
 
